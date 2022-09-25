@@ -1,3 +1,17 @@
+# This is a JSON/Property file driven game.  All adventures are in the CommonAdventures.js file.
+The following attributes are needed for each adventure:
+
+Type: ["story" or "combat"]
+FOR STORY:
+heading: The heading for the story
+story: The text displayed when that adventure begins
+reward: An array of objects.  Each object will have a "stat" and a "value".  The stat relates to the user object and gives an increase or decrease in any stat.
+actions: An array of actions with a "text" and "action"  The action is a text value that directly points to the name of your adventure in the CommonAdventures.js file.  Actions can have conditions (a minimum stat required to see it as an option) as well as a random chance to display.  Condition of type "random" will give a random chance to display.  You can also have the outcome of an action be random (the value is the minimum roll value out of 100);
+
+For Combat see the "ogre" for reference.  A combat adventure will spawn a new combat.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
