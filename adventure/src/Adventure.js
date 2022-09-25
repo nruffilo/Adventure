@@ -95,7 +95,6 @@ function Adventure(props) {
 
     const goOnAdventure = () => {
         let newAdvType = Math.floor(Math.random()*AdventureList.length);
-        newAdvType = 0;
         props.setCurrentAdventure({...CommonAdventures[AdventureList[newAdvType]]});
     }
 
