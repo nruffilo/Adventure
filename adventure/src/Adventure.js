@@ -83,6 +83,11 @@ function Adventure(props) {
         }
         if (tmpEnemy.currentHP <= 0) {
             let nextAdventure = CommonAdventures.CombatComplete;
+            if (props.currentAdventure.returnAction !== undefined) {
+                nextAdventure.actions.push(props.currentAdventure.returnAction);
+            } else {
+                nextAdventure.actions.push({text: "Return Home",action:"complete"});
+            }
             nextAdventure.reward = tmpEnemy.reward;
             props.setCurrentAdventure(nextAdventure);
         }

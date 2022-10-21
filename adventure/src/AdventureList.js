@@ -1,6 +1,6 @@
 export const AdventureList = [
     "FairyGarden",
     "Ogre",
-    "PotOfGold"
-
+    "PotOfGold",
+    "DwarvenMine"
 ];

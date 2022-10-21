@@ -6,6 +6,8 @@ import Training from './Training';
 import Tavern from './Tavern';
 import Adventure from './Adventure';
 import 'rpg-awesome/css/rpg-awesome.min.css';
+import { CommonAdventures } from './CommonAdventures';
+
 
 function App() {
   const userName = useRef(null);
@@ -28,6 +30,28 @@ function App() {
   const [currentEnemy, setCurrentEnemy] = useState({});
 
   const updateAndSetCurrentAdventure = (adventure) => {
+    //see if the adventure has an encounter, if so, process it.
+    if (adventure.encounter !== undefined && adventure.encounter !== null) {
+      let roll = Math.floor(Math.random() * 100);
+      let activeEncounter = null;
+      for (const key in adventure.encounter) {
+        if (key >= roll) {
+          activeEncounter = adventure.encounter[key];
+        }
+      };
+
+      //if we have an active encounter process it as a reward, or action
+      if (activeEncounter != null) {
+        if (activeEncounter.reward != undefined) {
+          adventure.reward.push(activeEncounter.reward);
+          adventure.story += adventure.text;
+        } else if (activeEncounter.action != undefined) {
+          let newAdventure = CommonAdventures[activeEncounter.action];
+          newAdventure.returnAction = activeEncounter.returnAction;
+        }
+      }
+    }
+
     //see if this has a reward attached, if so, give it and mark it as collected if not already.
     if (adventure.reward !== undefined && adventure.reward !== null) {
       let tmpUser = {...user};
